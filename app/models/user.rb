@@ -17,4 +17,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   has_secure_password
 
+  def follow(id)
+    self.active_relationships.build(followed_id: id).save
+  end
 end
