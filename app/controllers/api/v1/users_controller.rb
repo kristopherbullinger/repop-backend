@@ -1,5 +1,9 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorize, only: [:create]
+  skip_before_action :authorize, only: [:create, :show]
+
+  def show
+    render json: {selectedUser: UserSerializer.new(@show_user)}, status: :ok
+  end
 
   def create
     @user = User.create(user_params)
@@ -13,6 +17,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
+
+  def get_user
+    @show_user = User.find(params[:user_id])
+  end
 
   def user_params
     params.require(:user).permit(:username, :email, :location, :password, :password_confirmation)

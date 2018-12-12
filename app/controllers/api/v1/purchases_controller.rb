@@ -1,4 +1,4 @@
-class PurchasesController < ApplicationController
+class Api::V1::PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
