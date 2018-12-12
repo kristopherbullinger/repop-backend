@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def follow(id)
     self.active_relationships.build(followed_id: id).save
   end
+
+  def unfollow(id)
+    self.active_relationships.find_by(followed_id: id).destroy
+  end
 end

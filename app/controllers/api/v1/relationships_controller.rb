@@ -5,6 +5,10 @@ class Api::V1::RelationshipsController < ApplicationController
     @user.follow(relationship_params[:followed_id])
   end
 
+  def destroy
+    @user.unfollow(relationship_params[:followed_id])
+  end
+
   private
 
   def relationship_params
