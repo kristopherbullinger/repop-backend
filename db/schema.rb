@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_212709) do
+ActiveRecord::Schema.define(version: 2018_12_12_153526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 2018_12_10_212709) do
     t.index ["item_id", "user_id"], name: "index_likes_on_item_id_and_user_id", unique: true
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "purchaser_id"
+    t.integer "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -67,9 +75,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_212709) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
-    t.integer "purchaser_id"
-    t.integer "seller_id"
-    t.integer "item_id"
+    t.integer "purchase_id"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
