@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_153526) do
     t.string "username"
     t.string "email"
     t.string "location"
+    t.string "bio"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

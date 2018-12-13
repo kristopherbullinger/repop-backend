@@ -3,7 +3,7 @@ class ItemSerializer < ActiveModel::Serializer
   belongs_to :user
   has_many :likes
   class UserSerializer < ActiveModel::Serializer
-    attributes :username
+    attributes :username, :id
   end
   class LikeSerializer < ActiveModel::Serializer
     attributes :id

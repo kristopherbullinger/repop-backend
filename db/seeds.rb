@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do
-  User.create(username: Faker::Internet.username, email: Faker::Internet.email, location: "#{Faker::Address.city}, #{Faker::Address.state}", password: "123", password_confirmation: "123")
+User.create(username: "skeletizzle666", email: Faker::Internet.email, bio: Faker::HitchhikersGuideToTheGalaxy.marvin_quote, location: "#{Faker::Address.city}, #{Faker::Address.state}", password: "123", password_confirmation: "123")
+
+9.times do
+  User.create(username: Faker::Internet.username, email: Faker::Internet.email, bio: Faker::HitchhikersGuideToTheGalaxy.marvin_quote, location: "#{Faker::Address.city}, #{Faker::Address.state}", password: "123", password_confirmation: "123")
 end
 
 User.all.each do |user|
