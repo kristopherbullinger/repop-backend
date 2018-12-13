@@ -25,4 +25,12 @@ class User < ApplicationRecord
   def unfollow(id)
     self.active_relationships.find_by(followed_id: id).destroy
   end
+
+  def toggleFollow(id)
+    if self.following.includes(User.find(id))
+      self.unfollow(id)
+    else
+      self.follow(id)
+    end
+  end
 end

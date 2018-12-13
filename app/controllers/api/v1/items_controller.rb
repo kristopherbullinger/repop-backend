@@ -2,7 +2,7 @@ class Api::V1::ItemsController < ApplicationController
   skip_before_action :authorize, only: [:index, :show]
 
   def index
-    render json: {items: Item.all}, status: :ok
+    render json: {items: Item.all.map{|item| ItemSerializer.new(item)} }, status: :ok
   end
 
   def show

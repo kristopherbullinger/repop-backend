@@ -2,7 +2,8 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authorize, only: [:create, :show]
 
   def show
-    render json: {selectedUser: UserSerializer.new(@show_user)}, status: :ok
+    get_user
+    render json: {selectedUser: UserSerializer.new(@show_user), items: @show_user.items.map{|item| ItemSerializer.new(item)}}, status: :ok
   end
 
   def create
@@ -19,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def get_user
-    @show_user = User.find(params[:user_id])
+    @show_user = User.find(params[:id])
   end
 
   def user_params

@@ -9,6 +9,11 @@ class Api::V1::RelationshipsController < ApplicationController
     @user.unfollow(relationship_params[:followed_id])
   end
 
+  def toggle
+    byebug
+    @user.toggleFollow(params[:id])
+  end
+
   private
 
   def relationship_params

@@ -1,16 +1,23 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :email, :location, :followers, :following
-  has_many :items
-  has_many :likes
-  has_many :followers
-  has_many :following
-  class ItemSerializer < ActiveModel::Serializer
-    attributes :description, :price, :size, :brand, :sold, :created_at
+  # has_many :items
+  # has_many :likes
+  # has_many :follower, embed: :ids
+  # has_many :following, embed: :ids
+  #
+  # class LikeSerializer < ActiveModel::Serializer
+  #   attributes :item
+  # end
+  def followers
+    object.followers.map{|f| FollowerSerializer.new(f)}
   end
-  class LikeSerializer < ActiveModel::Serializer
-    attributes :item
+  def following
+    object.following.map{|f| FollowerSerializer.new(f)}
   end
-  class UserSerializer < ActiveModel::Serializer
-    attributes :id, :username, :email, :location
+  class FollowerSerializer < ActiveModel::Serializer
+    attributes :id
   end
+  # class UserSerializer < ActiveModel::Serializer
+  #   attributes :id, :username, :email, :location
+  # end
 end
