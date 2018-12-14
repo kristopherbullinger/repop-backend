@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one_attached :avatar
+  has_one_attached :image
   has_many :items
 
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

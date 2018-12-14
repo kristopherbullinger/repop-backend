@@ -35,4 +35,14 @@ class ApplicationController < ActionController::API
     render json: {errors: ['Please log in.']}, status: :unauthorized unless logged_in?
   end
 
+  def get_image_url
+    -> (image) do
+      begin
+        url_for(image)
+      rescue Module::DelegationError
+        ""
+      end
+    end
+  end
+
 end
