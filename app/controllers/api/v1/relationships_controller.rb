@@ -10,8 +10,8 @@ class Api::V1::RelationshipsController < ApplicationController
   end
 
   def toggle
-    byebug
     @user.toggleFollow(params[:id])
+    render json: {status: "ok"}, status: :ok
   end
 
   private

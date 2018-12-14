@@ -6,6 +6,6 @@ class ItemSerializer < ActiveModel::Serializer
     attributes :username, :id
   end
   class LikeSerializer < ActiveModel::Serializer
-    attributes :id
+    attributes :user_id
   end
 end

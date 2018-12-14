@@ -4,6 +4,12 @@ class Api::V1::LikesController < ApplicationController
     @user.likes.build(item_id: like_params[:item_id])
   end
 
+  def toggle
+    @like = Like.find_by(user_id: @user.id, item_id: params[:id])
+    @user.toggleLikeItem(params[:id])
+    render json: {like: LikeSerializer.new(@like)}, status: :ok
+  end
+
   private
 
   def like_params

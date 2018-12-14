@@ -6,4 +6,5 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :size, presence: true
+
 end

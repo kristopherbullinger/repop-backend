@@ -27,10 +27,28 @@ class User < ApplicationRecord
   end
 
   def toggleFollow(id)
-    if self.following.includes(User.find(id))
+    if self.following.include?(User.find(id))
       self.unfollow(id)
     else
       self.follow(id)
     end
   end
+
+  def likeItem(id)
+    Like.create(user_id: self.id, item_id: id)
+  end
+
+  def unlikeItem(id)
+    Like.find_by(item_id: id, user_id: self.id).destroy
+  end
+
+  def toggleLikeItem(id)
+    @item = Item.find(id)
+    if !!@item.likes.find{|l| l.user_id == self.id}
+      self.unlikeItem(id)
+    else
+      self.likeItem(id)
+    end
+  end
+
 end

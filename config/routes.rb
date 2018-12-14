@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :items, :users, :reviews, :likes, :relationships
       post '/login', to: "auth#create"
       post '/relationships/toggle', to: "relationships#toggle"
+      post '/likes/toggle', to: "likes#toggle"
     end
   end
 end
