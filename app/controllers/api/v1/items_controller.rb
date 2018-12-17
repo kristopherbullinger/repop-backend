@@ -19,6 +19,11 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    debugger
+    @item = Item.find(params[:id]).destroy
+  end
+
   private
 
   def item_params
