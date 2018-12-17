@@ -11,14 +11,18 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    byebug
-    @item = @user.items.build(item_params).save
+    @item = @user.items.build(item_params)
+    if @item.save
+      render json: {item: ItemSerializer.new(@item)}, status: :ok
+    else
+      render json: {errors: @item.errors.full_messages}, status: 422
+    end
   end
 
   private
 
   def item_params
-    params.permit(:description, :price, :size, :brand, :image)
+    params.require(:item).permit(:description, :price, :size, :brand, :image)
   end
 
 end

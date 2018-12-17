@@ -17,6 +17,10 @@ class UserSerializer < ActiveModel::Serializer
   class FollowerSerializer < ActiveModel::Serializer
     attributes :id
   end
+  #
+  # def image_url
+  #   instance_options[:get_image_url].call(object.image)
+  # end
   # class UserSerializer < ActiveModel::Serializer
   #   attributes :id, :username, :email, :location
   # end
