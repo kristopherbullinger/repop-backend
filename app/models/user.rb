@@ -10,9 +10,12 @@ class User < ApplicationRecord
 
   has_many :likes
 
-  has_many :reviews, class_name: "Review", foreign_key: "seller_id", dependent: :destroy
+  has_many :purchases, class_name: "Purchase", foreign_key: "purchaser_id"
+  has_many :purchased, class_name: "Purchase", foreign_key: "seller_id"
 
-  has_many :reviewed, class_name: "Review", foreign_key: "purchaser_id", dependent: :destroy
+  # has_many :reviews, through: :purchases, dependent: :destroy
+  # has_many :reviewed, through: :purchases, dependent: :destroy
+
 
   validates :username, presence: true, uniqueness: {case_sensitive: false}
   validates :email, presence: true

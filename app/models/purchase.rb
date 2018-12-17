@@ -2,5 +2,5 @@ class Purchase < ApplicationRecord
   belongs_to :seller, class_name: "User"
   belongs_to :purchaser, class_name: "User"
   belongs_to :item
-  has_one :review
+  has_one :review, dependent: :destroy
 end
