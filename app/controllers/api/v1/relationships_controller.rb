@@ -11,7 +11,7 @@ class Api::V1::RelationshipsController < ApplicationController
 
   def toggle
     @user.toggleFollow(params[:id])
-    render json: {status: "ok"}, status: :ok
+    render json: {user: UserSerializer.new(User.find(params[:id]))}, status: :ok
   end
 
   private

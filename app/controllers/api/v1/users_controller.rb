@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     get_user
-    render json: {selectedUser: UserSerializer.new(@show_user), items: @show_user.items.map{|item| ItemSerializer.new(item)}}, status: :ok
+    render json: {user: UserSerializer.new(@show_user), items: @show_user.items.map{|item| ItemSerializer.new(item)}, likedItems: @show_user.likes.map{|like| ItemSerializer.new(like.item)}}, status: :ok
   end
 
   def create
@@ -17,6 +17,15 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user.update(user_params)
+    render json: {user: UserSerializer.new(@user)}, status: :ok
+  end
+
+  def destroy
+    @user = User.find(params[:id]).destroy
+  end
+
   private
 
   def get_user
@@ -24,6 +33,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :location, :password, :password_confirmation, :image)
+    params.require(:user).permit(:username, :email, :location, :bio, :password, :password_confirmation)
   end
 end

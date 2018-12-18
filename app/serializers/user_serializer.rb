@@ -1,5 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :location, :followers, :following
+  attributes :id, :username, :email, :location, :bio, :followers, :following
+
+  # has_many :followers, embed: :id
+  # has_many :following, embed: :id
+
   # has_many :items
   # has_many :likes
   # has_many :follower, embed: :ids
@@ -9,18 +13,17 @@ class UserSerializer < ActiveModel::Serializer
   #   attributes :item
   # end
   def followers
-    object.followers.map{|f| FollowerSerializer.new(f)}
-  end
-  def following
-    object.following.map{|f| FollowerSerializer.new(f)}
-  end
-  class FollowerSerializer < ActiveModel::Serializer
-    attributes :id
+    self.object.followers.map{|f| {id: f.id, username: f.username}}
   end
   #
-  # def image_url
-  #   instance_options[:get_image_url].call(object.image)
+  def following
+    self.object.following.map{|f| {id: f.id, username: f.username}}
+  end
+  #
+  # class UserSerializer < ActiveModel::Serializer
+  #   attributes :id, :username
   # end
+
   # class UserSerializer < ActiveModel::Serializer
   #   attributes :id, :username, :email, :location
   # end
