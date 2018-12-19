@@ -8,7 +8,8 @@ class Api::V1::PurchasesController < ApplicationController
       @purchase = Purchase.new(purchase_params)
       @purchase.purchaser = @user
       @purchase.save
-      @item.update(sold: true)
+      @item = Item.find(purchase_params[:item_id])
+      debugger
       render json: {item: ItemSerializer.new(@item)}, status: :ok
     end
   end
