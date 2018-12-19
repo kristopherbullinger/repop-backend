@@ -9,8 +9,5 @@ class ItemSerializer < ActiveModel::Serializer
   class LikeSerializer < ActiveModel::Serializer
     attributes :user_id
   end
-  #
-  # def image_url
-  #   instance_options[:get_image_url].call(object.image)
-  # end
+
 end
