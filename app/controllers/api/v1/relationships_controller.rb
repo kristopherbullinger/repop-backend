@@ -1,7 +1,6 @@
 class Api::V1::RelationshipsController < ApplicationController
 
   def create
-    byebug
     @user.follow(relationship_params[:followed_id])
   end
 
@@ -11,7 +10,7 @@ class Api::V1::RelationshipsController < ApplicationController
 
   def toggle
     @user.toggleFollow(params[:id])
-    render json: {user: UserSerializer.new(User.find(params[:id]))}, status: :ok
+    render json: {currentUser: UserSerializer.new(@user), followedUser: UserSerializer.new(User.find(params[:id]))}, status: :ok
   end
 
   private
