@@ -14,6 +14,6 @@ end
 
 User.all.each do |user|
   3.times do
-    user.items.build(description: Faker::Food.description, price: rand(10) + 1, size: "M", brand: Faker::Appliance.brand).save
+    user.items.build(description: Faker::Food.description, price: rand(48) + 9, size: "M", brand: Faker::Appliance.brand).save
   end
 end

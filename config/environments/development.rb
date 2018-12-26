@@ -13,7 +13,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # use disk for image storage
-  config.active_storage.service = :local
+  # config.active_storage.service = :local
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

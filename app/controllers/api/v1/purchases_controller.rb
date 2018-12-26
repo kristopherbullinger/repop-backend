@@ -2,14 +2,13 @@ class Api::V1::PurchasesController < ApplicationController
 
   def create
     @item = Item.find(purchase_params[:item_id])
-    if @item.sold
+    if !!@item.purchase
       render json: {errors: ["This item is not for sale"]}, status: 422
     else
       @purchase = Purchase.new(purchase_params)
       @purchase.purchaser = @user
       @purchase.save
       @item = Item.find(purchase_params[:item_id])
-      debugger
       render json: {item: ItemSerializer.new(@item)}, status: :ok
     end
   end

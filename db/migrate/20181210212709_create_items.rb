@@ -6,8 +6,6 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.float :price
       t.string :size
       t.string :brand
-      t.boolean :sold, default: false
-
       t.timestamps
     end
   end
