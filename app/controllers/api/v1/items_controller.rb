@@ -14,7 +14,7 @@ class Api::V1::ItemsController < ApplicationController
   def create
     @item = @user.items.build(item_params)
     if @item.save
-      render json: {item: ItemSerializer.new(@item)}, status: :ok
+      render json: {item: ItemSerializer.new(@item), user: UserSerializer.new(@user)}, status: :ok
     else
       render json: {errors: @item.errors.full_messages}, status: 422
     end
