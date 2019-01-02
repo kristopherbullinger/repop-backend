@@ -21,6 +21,11 @@ class Api::V1::ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    Review.find_by(purchase_id: review_params[:purchase_id]).destroy
+    render json: {currentUser: UserSerializer.new(@user)}, status: :ok
+  end
+
 
 
   private
